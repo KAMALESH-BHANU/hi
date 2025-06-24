@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rail Complaint System</title>
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            overflow-y: auto; /* Enables vertical scrolling */
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #6e8efb, #a777e3, #6e8efb, #a777e3);
+            background-size: 400% 400%;
+            animation: gradientBG 6s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Website Name (Top Left) */
+        .website-name {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Login Icon (Top Right) */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .login-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .login-text {
+            color: white;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Upload Boxes */
+        .upload-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .upload-box {
+            width: 300px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .upload-box img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .upload-box span {
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Complaints Scrollable Section */
+        .complaints-container {
+            width: 90%;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px 0;
+            scroll-behavior: smooth;
+        }
+
+        .complaint-box {
+            width: 90%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            margin: auto;
+        }
+        .complaint-box {
+    cursor: pointer; /* Changes cursor to hand icon */
+    background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.complaint-box:hover {
+    background: rgba(255, 255, 255, 0.2);/* Change background color on hover */
+    color: white; /* Change text color on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+        .complaint-box h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        /* Chat Input */
+        .chat-container {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+        }
+
+        .chat-box {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .chat-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: black;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .chat-box button {
+            background: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #6e8efb;
+            font-weight: bold;
+        }
+
+        .chat-box button:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <!-- Header with Website Name and Login Icon -->
+    <div class="header">
+        <div class="website-name">Rail Complaint System</div>
+        <div class="login-container" onclick="window.location.href='login.html'">
+            <img class="login-icon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDVoKsUY0fONoMCK-a9UuGBKejULaaltOjgA&s" alt="Login">
+            <span class="login-text">User</span>
+        </div>
+    </div>
+
+    <!-- Upload Boxes -->
+    <div class="upload-container">
+        <div class="upload-box" onclick="document.getElementById('imageUpload').click();">
+            <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" alt="Upload Image">
+            <span >Upload Image<br></span>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+
+        <div class="upload-box" onclick="document.getElementById('videoUpload').click();">
+            <img src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png" alt="Upload Video">
+            <span>Upload Video</span>
+            <input type="file" id="video" name="video" accept="videoUpload/*" required>
+        </div>
+
+        <div class="upload-box" onclick="document.getElementById('textUpload').click();">
+            <img src="https://cdn-icons-png.flaticon.com/512/747/747327.png" alt="Upload Text">
+            <span>Upload Text</span>
+            <input type="file" id="image" name="image" accept="textUpload/*" required>
+        </div>
+    </div>
+
+
+    <!-- Complaints Scrollable Section -->
+    <div class="complaints-container">
+        <div class="complaint-box">
+            <div class="complaint-box"><a href="thankyoupage.html"><h3>Train Delay</h3></div></a>
+            <p>Delay of Train,Missed Train,etc</p>
+        </div>
+        <div class="complaint-box">
+            <div class="complaint-box"><a href="thankyoupage.html"><h3>Ticketing Issues</h3></div></a>
+            <p>Ticketing Issues</p>
+        </div>
+        <div class="complaint-box">
+            <div class="complaint-box"><a href="thankyoupage.html"><h3>Cleanliness</h3></div></a>
+            <p>No proper ventilation, Cleaning staff</p>
+        </div>
+        <div class="complaint-box">
+            <div class="complaint-box"><a href="thankyoupage.html"><h3>Customer Service</h3></div></a>
+            <p>Seats are torn</p>
+        </div>
+    </div>
+     
+
+    <!-- Chat Input -->
+    <div class="chat-container">
+        <div class="chat-box">
+            <input type="text" placeholder="Type your complaint here...">
+            <button>Send</button>
+        </div>
+    </div>
+
+</body>
+</html>
+
